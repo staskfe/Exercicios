@@ -19,4 +19,3 @@ Primeiro exercicio:
 Porem, esse endpoint não está retornando o valor total do carrinho, soma de todos os produtos que estão no carrinho.
 
 
-Para rodar, só execute pelo Visual studio. 
