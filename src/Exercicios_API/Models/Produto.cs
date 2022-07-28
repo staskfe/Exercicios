@@ -10,6 +10,5 @@ namespace Exercicios_API.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public double Valor { get; set; }
-
     }
 }

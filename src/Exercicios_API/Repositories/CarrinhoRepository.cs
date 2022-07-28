@@ -21,13 +21,29 @@ namespace Exercicios_API.Repositories
             return FakeData.Carrinhos.Where(x => x.UsuarioId == usuarioId).ToList();
         }
 
-        public Carrinho AdicionarProduto(Carrinho carrinho)
+        public Carrinho AdicionaCarrinho(Carrinho carrinho)
         {
-            carrinho.Produto = FakeData.Produtos.FirstOrDefault(x => x.Id == carrinho.ProdutoId);
-
+            PreencherProduto(carrinho.ProdutosCarrinho);
             FakeData.Carrinhos.Add(carrinho);
+            FakeData.ProdutosCarrinho.AddRange(carrinho.ProdutosCarrinho);
             return carrinho;
         }
+
+        public Carrinho AdicionaProduto(Carrinho carrinho)
+        {
+            PreencherProduto(carrinho.ProdutosCarrinho);
+            FakeData.ProdutosCarrinho.AddRange(carrinho.ProdutosCarrinho);
+            return carrinho;
+        }
+        public void PreencherProduto(IEnumerable<ProdutoCarrinho> produtosCarrinho)
+        {
+            foreach (ProdutoCarrinho produto in produtosCarrinho)
+            {
+                produto.Produto = FakeData.Produtos.FirstOrDefault(x => x.Id == produto.ProdutoId);
+            }
+        }
+
+
         public void RemoverProduto(Carrinho carrinho)
         {
             FakeData.Carrinhos.Remove(carrinho);

@@ -38,5 +38,7 @@ namespace Exercicios_API.FakeDb
 
         public static List<Carrinho> Carrinhos = new List<Carrinho> { };
         public static List<Compra> Compras = new List<Compra> { };
+
+        public static List<ProdutoCarrinho> ProdutosCarrinho = new List<ProdutoCarrinho> { };
     }
 }
