@@ -1,7 +1,9 @@
 ﻿
+using Exercicios_API.Dtos.Produtos;
 using Exercicios_API.Models;
 using Exercicios_API.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Exercicios_API.Services
 {
@@ -20,8 +22,21 @@ namespace Exercicios_API.Services
 
         public Carrinho AdicionarProduto(Carrinho carrinho)
         {
-            _carrinhoRepository.AdicionarProduto(carrinho);
-            return _carrinhoRepository.PorId(carrinho.Id);
+            var buscaCarrinho = _carrinhoRepository.PorUsuarioId(carrinho.UsuarioId);
+
+            if (buscaCarrinho != null)
+            {
+                buscaCarrinho.ProdutosCarrinho.ToList().AddRange(carrinho.ProdutosCarrinho);
+                _carrinhoRepository.AdicionaProduto(carrinho);
+                return carrinho;
+            }
+            else
+            {
+                _carrinhoRepository.AdicionaCarrinho(carrinho);
+            }
+
+            return _carrinhoRepository.PorId(carrinho.Id); 
+
         }
 
         public void RemoverProduto(int id)
@@ -29,5 +44,6 @@ namespace Exercicios_API.Services
             var carrinho = _carrinhoRepository.PorUsuarioId(id);
             _carrinhoRepository.RemoverProduto(carrinho);
         }
+
     }
 }

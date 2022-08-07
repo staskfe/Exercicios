@@ -27,11 +27,12 @@ namespace Exercicios_API.Controllers
         }
 
         [HttpPost]
-        public CarrinhoDisplayDto Post(CarrinhoCreateDto dto)
+        public CarrinhoCreateDisplayDto Post(CarrinhoCreateDto dto)
         {
             var model = new Carrinho(dto);
+
             var result = _carrinhoService.AdicionarProduto(model);
-            return new CarrinhoDisplayDto(result);
+            return new CarrinhoCreateDisplayDto(result);
         }
 
 

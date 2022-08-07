@@ -18,7 +18,6 @@ namespace Exercicios_API.Dtos.Produtos
             Id = model.Id;
             Nome = model.Nome;
             Valor = model.Valor;
-            Nome = model.Nome;
         }
 
     }
